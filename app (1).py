@@ -199,12 +199,58 @@ def predict_page():
             "Month",
             ["Feb", "Mar", "May", "June", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
         )
-        operating_systems = st.selectbox("Operating System", [1, 2, 3, 4, 5, 6, 7, 8])
-        browser = st.selectbox("Browser", [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13])
-        region = st.selectbox("Region", [1, 2, 3, 4, 5, 6, 7, 8, 9])
-        traffic_type = st.selectbox("Traffic Type", list(range(1, 21)))
+        
+        # Mappings for user-friendly UI display
+        os_options = {
+            1: "iOS (Apple Mobile)",
+            2: "Windows",
+            3: "macOS (Apple Desktop)",
+            4: "Android",
+            5: "Chrome OS",
+            6: "Linux",
+            7: "Windows Phone",
+            8: "Unix / Other"
+        }
+        
+        browser_options = {
+            1: "Safari", 2: "Google Chrome", 3: "Microsoft Edge / IE", 
+            4: "Mozilla Firefox", 5: "Opera", 6: "Android Webkit", 
+            7: "Samsung Internet", 8: "UC Browser", 9: "Browser Channel 9", 
+            10: "Browser Channel 10", 11: "Browser Channel 11", 
+            12: "Browser Channel 12", 13: "Browser Channel 13"
+        }
+        
+        traffic_options = {
+            1: "Direct Traffic", 2: "Organic Search", 3: "Paid Search", 
+            4: "Social Media Ads", 5: "Referral Links"
+        }
+        for i in range(6, 21):
+            traffic_options[i] = f"Other Traffic Channel {i}"
+
+        # Streamlit elements using format_func
+        operating_systems = st.selectbox(
+            "Operating System", 
+            options=list(os_options.keys()), 
+            format_func=lambda x: os_options[x]
+        )
+        browser = st.selectbox(
+            "Browser", 
+            options=list(browser_options.keys()), 
+            format_func=lambda x: browser_options[x]
+        )
+        region = st.selectbox(
+            "Region", 
+            options=list(range(1, 10)), 
+            format_func=lambda x: f"Territory Region {x}"
+        )
+        traffic_type = st.selectbox(
+            "Traffic Type", 
+            options=list(traffic_options.keys()), 
+            format_func=lambda x: traffic_options[x]
+        )
         visitor_type = st.selectbox("Visitor Type", ["New_Visitor", "Returning_Visitor", "Other"])
         weekend = st.selectbox("Weekend Session?", ["No", "Yes"])
+
     st.markdown('</div>', unsafe_allow_html=True)
 
     # Prediction button
