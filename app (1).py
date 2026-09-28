@@ -269,24 +269,24 @@ def predict_page():
     predict_btn = st.button("Predict Purchase Intent")
     if predict_btn:
         input_data = pd.DataFrame({
-            'Administrative(Account settings etc.)': [administrative],
-            'Administrative_Duration': [administrative_duration],
-            'Informational(FAQ,shipment tracking etc.)': [informational],
-            'Informational_Duration': [informational_duration],
-            'ProductRelatedPages': [product_related],
-            'ProductRelated_Duration': [product_related_duration],
-            'BounceRates(wxiting after viewing one page)': [bounce_rates],
-            'ExitRates': [exit_rates],
-            'PageValues': [page_values],
-            'SpecialDay': [special_day],
-            'Month': [month],
-            'OperatingSystems': [operating_systems],
-            'Browser': [browser],
-            'Region': [region],
-            'TrafficType': [traffic_type],
-            'VisitorType': [visitor_type],
-            'Weekend': [weekend == "Yes"]
-        })
+        'Administrative': [administrative],
+        'Administrative_Duration': [administrative_duration],
+        'Informational': [informational],
+        'Informational_Duration': [informational_duration],
+        'ProductRelated': [product_related],
+        'ProductRelated_Duration': [product_related_duration],
+        'BounceRates': [bounce_rates],
+        'ExitRates': [exit_rates],
+        'PageValues': [page_values],
+        'SpecialDay': [special_day],
+        'Month': [month],
+        'OperatingSystems': [operating_systems],
+        'Browser': [browser],
+        'Region': [region],
+        'TrafficType': [traffic_type],
+        'VisitorType': [visitor_type],
+        'Weekend': [weekend == "Yes"]
+})
         prediction = model.predict(input_data)[0]
         probability = model.predict_proba(input_data)[0][1]
 
