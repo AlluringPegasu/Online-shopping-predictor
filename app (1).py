@@ -224,6 +224,17 @@ def predict_page():
             1: "Direct Traffic", 2: "Organic Search", 3: "Paid Search", 
             4: "Social Media Ads", 5: "Referral Links"
         }
+        region_options = {
+            1: "North America (East)",
+            2: "North America (West)",
+            3: "Western Europe",
+            4: "Asia-Pacific (North)",
+            5: "Asia-Pacific (South)",
+            6: "United Kingdom & Ireland",
+            7: "Latin America",
+            8: "Middle East & Africa",
+            9: "Global Alternate Routing"
+        }
         for i in range(6, 21):
             traffic_options[i] = f"Other Traffic Channel {i}"
 
@@ -240,8 +251,8 @@ def predict_page():
         )
         region = st.selectbox(
             "Region", 
-            options=list(range(1, 10)), 
-            format_func=lambda x: f"Territory Region {x}"
+            options=list(region_options.keys()), 
+            format_func=lambda x: region_options[x]
         )
         traffic_type = st.selectbox(
             "Traffic Type", 
